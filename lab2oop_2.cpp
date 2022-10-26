@@ -1,20 +1,67 @@
-// lab2oop_2.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+﻿
 #include <iostream>
-
+class Point {
+	int x;
+	int y;
+public:
+	static int GetDistance(Point& p1, Point& p2) {
+		std::cout << "a distance between p1 and p2 is: " << std::endl;
+		return 0;
+	}
+	int GetDistance(Point& p) {
+		std::cout << "a distance btw this point and point P is: " << std::endl;
+		return 0;
+	}
+	Point(int x, int y) { // конструктор с параметрами 
+		this->x = x;
+		this->y = y;
+	}
+	Point() { //конструктор без параметров
+		x = 0;
+		y = 0;
+	}
+};
+class Figure { //класс фигуры 
+protected: //свойства 
+	int dimension;
+public:
+	virtual void DrawFigure() = 0; //абстрактный метод
+	virtual int GetSquare() = 0; // положим, что все фигуры должны обладать площадью
+	virtual ~Figure() = 0;
+};
+class Line :private Figure {
+	int length;
+	Point* p1;
+	Point* p2;
+	int GetSquare() { //(по умолчанию private)-метод
+		return 0;
+	}
+public:
+	void DrawFigure() {
+		std::cout << "Drawing line...\n";
+	}
+	int GetLength() {
+		std::cout << "This line length is: " << length << std::endl;
+		return length;
+	}
+	Line(Point& p1, Point& p2) {
+		length = Point::GetDistance(p1, p2);
+		this->p1 = new Point(p1); //конструктор копирования класса Point по умлочанию
+		this->p2 = new Point(p2);
+		dimension = 1; //protected-свойство доступно для использования в классах-наследниках
+	}
+	~Line() {
+		delete p1;
+		delete p2;
+	}
+};
 int main()
 {
-    std::cout << "Hello World!\n";
+	Point a(10, 5);
+	Point b(2, 5);
+	Line lin(a,b);
+	lin.GetLength();
+	//lin.GetSquare(); //не скомпилируется(т.о. можно переписать абстрактный метод, чтобы он был недоступен для вызова)
+	//lin.p1 //нет доступа к отдельным точкам 
+	lin.DrawFigure();
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
