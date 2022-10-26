@@ -1,2 +1,13 @@
 ﻿  lab2oop_2.cpp
-  lab2oop_2.vcxproj -> D:\vs2022projects\lab2oop_2\x64\Debug\lab2oop_2.exe
+D:\vs2022projects\lab2oop_2\lab2oop_2\lab2oop_2.cpp(69,13): error C2664: 'void Point::Set<int>(T &,T &)': cannot convert argument 1 from 'int' to 'T &'
+          with
+          [
+              T=int
+          ]
+D:\vs2022projects\lab2oop_2\lab2oop_2\lab2oop_2.cpp(23,7): message : see declaration of 'Point::Set'
+D:\vs2022projects\lab2oop_2\lab2oop_2\lab2oop_2.cpp(70,34): error C2664: 'void Point::Set<int>(T &,T &)': cannot convert argument 1 from 'int' to 'T &'
+          with
+          [
+              T=int
+          ]
+D:\vs2022projects\lab2oop_2\lab2oop_2\lab2oop_2.cpp(23,7): message : see declaration of 'Point::Set'
